@@ -30,11 +30,11 @@
 
 		<script>
 
-			if ( WEBVR.isAvailable() === false ) {
+			WEBVR.checkAvailability().catch( function( message ) {
 
-				document.body.appendChild( WEBVR.getMessage() );
+				document.body.appendChild( WEBVR.getMessageContainer( message ) );
 
-			}
+			} );
 
 			//
 
@@ -195,11 +195,11 @@
 
 				effect = new THREE.VREffect( renderer );
 
-				if ( WEBVR.isAvailable() === true ) {
+				WEBVR.getVRDisplay( function ( display ) {
 
-					document.body.appendChild( WEBVR.getButton( effect ) );
+					document.body.appendChild( WEBVR.getButton( display, renderer.domElement ) );
 
-				}
+				} );
 
 				//
 
